@@ -1,0 +1,14 @@
+h1 {
+    color: red;
+}
+
+img {
+    width: 100px;
+}
+
+.wrapper {
+    width: 100px;
+    aspect-ratio: 1;
+    background-image: url("../images/js-logo.png");
+    background-size: contain;
+}

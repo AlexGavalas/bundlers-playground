@@ -1,0 +1,12 @@
+$color: rebeccapurple;
+
+@custom-selector :--heading h1, h2, h3, h4, h5, h6;
+
+:--heading {
+    border: 3px solid rgb(0 0 100% / 90%);
+    padding: 10px;
+}
+
+h1 {
+    color: aqua;
+}
