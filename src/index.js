@@ -1,5 +1,5 @@
-import * as util from "./util";
-import msg from "./message.txt";
+import * as util from './util';
+import message from './message.txt';
 
 const items = [];
 
@@ -10,12 +10,12 @@ const addToItems = (v) => {
     util.log(v);
 };
 
-addToItems("789");
+addToItems('789');
 
 util.log(add(1, 2));
-util.log(msg);
+util.log(message);
 
-fetch("/api/users")
+fetch('/api/users')
     .then((r) => r.json())
     .then(console.log)
     .catch(console.error);

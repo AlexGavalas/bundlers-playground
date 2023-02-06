@@ -1,10 +1,10 @@
-import "./css/main.css";
-import "./css/home.scss";
+import './css/main.css';
+import './css/home.scss';
 
-import "./index";
+import './index';
 
-const run = (a: number, b: number) => {
+const run = (a: number, b: number): number => {
     return a ** b;
 };
 
-console.log("HOME".repeat(run(2, 3)));
+console.log('HOME'.repeat(run(2, 3)));

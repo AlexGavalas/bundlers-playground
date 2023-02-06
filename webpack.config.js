@@ -1,24 +1,24 @@
-const path = require("node:path");
-const HTMLWebpackPlugin = require("html-webpack-plugin");
-const MiniCSSExtractPlugin = require("mini-css-extract-plugin");
-const CopyWebpackPlugin = require("copy-webpack-plugin");
-const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
-const MyPlugin = require("./my-plugin");
+const path = require('node:path');
+const HTMLWebpackPlugin = require('html-webpack-plugin');
+const MiniCSSExtractPlugin = require('mini-css-extract-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+const MyPlugin = require('./my-plugin');
 
-const isProd = process.env.NODE_ENV === "production";
+const isProd = process.env.NODE_ENV === 'production';
 
 /** @type {import('webpack').Configuration} */
 module.exports = {
-    mode: isProd ? "production" : "development",
-    devtool: isProd ? false : "inline-source-map",
+    mode: isProd ? 'production' : 'development',
+    devtool: isProd ? false : 'inline-source-map',
     entry: {
         // index: "./src/index",
-        home: "./src/home",
+        home: './src/home',
     },
     output: {
         clean: true,
-        filename: "[name].js",
-        path: path.resolve(__dirname, "dist"),
+        filename: '[name].js',
+        path: path.resolve(__dirname, 'dist'),
     },
     module: {
         rules: [
@@ -26,9 +26,9 @@ module.exports = {
                 test: /\.js$/,
                 exclude: /node_modules/,
                 use: {
-                    loader: "babel-loader",
+                    loader: 'babel-loader',
                     options: {
-                        presets: ["@babel/preset-env"],
+                        presets: ['@babel/preset-env'],
                     },
                 },
             },
@@ -36,26 +36,26 @@ module.exports = {
                 test: /\.ts$/,
                 exclude: /node_modules/,
                 use: [
-                    "ts-loader",
+                    'ts-loader',
                     // path.resolve("./my-loader/index.js")
                 ],
             },
             {
                 test: /\.html$/,
                 exclude: /node_modules/,
-                use: "html-loader",
+                use: 'html-loader',
             },
             {
                 test: /\.css$/,
                 exclude: /node_modules/,
                 use: [
                     MiniCSSExtractPlugin.loader,
-                    "css-loader",
+                    'css-loader',
                     {
-                        loader: "postcss-loader",
+                        loader: 'postcss-loader',
                         options: {
                             postcssOptions: {
-                                plugins: [["postcss-preset-env", { stage: 0 }]],
+                                plugins: [['postcss-preset-env', { stage: 0 }]],
                             },
                         },
                     },
@@ -66,21 +66,21 @@ module.exports = {
                 exclude: /node_modules/,
                 use: [
                     MiniCSSExtractPlugin.loader,
-                    "css-loader",
+                    'css-loader',
                     {
-                        loader: "postcss-loader",
+                        loader: 'postcss-loader',
                         options: {
                             postcssOptions: {
-                                plugins: [["postcss-preset-env", { stage: 0 }]],
+                                plugins: [['postcss-preset-env', { stage: 0 }]],
                             },
                         },
                     },
-                    "sass-loader",
+                    'sass-loader',
                 ],
             },
             {
                 test: /\.txt$/,
-                type: "asset/source",
+                type: 'asset/source',
             },
             // {
             //     test: /\.(ico|png)$/,
@@ -92,9 +92,9 @@ module.exports = {
             // },
             {
                 test: /\.(ico|png)$/,
-                type: "asset",
+                type: 'asset',
                 generator: {
-                    filename: "images/[hash]_[name][ext]",
+                    filename: 'images/[hash]_[name][ext]',
                 },
                 parser: {
                     dataUrlCondition: {
@@ -107,28 +107,28 @@ module.exports = {
     },
     plugins: [
         new HTMLWebpackPlugin({
-            template: "./src/index.html",
+            template: './src/index.html',
         }),
         new MiniCSSExtractPlugin({
-            filename: "bundle.css",
+            filename: 'bundle.css',
         }),
         // new CopyWebpackPlugin({
         //     patterns: [{ from: "./src/images", to: "images" }],
         // }),
         // new BundleAnalyzerPlugin(),
-        new MyPlugin(),
+        // new MyPlugin(),
     ],
     resolve: {
-        extensions: [".ts", ".js"],
+        extensions: ['.ts', '.js'],
     },
     ...(!isProd && {
         devServer: {
-            watchFiles: ["src/**/*"],
+            watchFiles: ['src/**/*'],
             proxy: {
-                "/api": {
-                    target: "http://localhost:3000",
+                '/api': {
+                    target: 'http://localhost:3000',
                     pathRewrite: {
-                        "^/api": "",
+                        '^/api': '',
                     },
                 },
             },
